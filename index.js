@@ -22,6 +22,42 @@ class User {
   }
 }
 
+class BankAccount {
+  constructor(accountNumber, user) {
+    this.accountNumber = accountNumber;
+    this.balance = 0;
+    this.user = user;
+  }
+
+  deposit(amount) {
+    if (amount > 0) {
+      this.balance += amount;
+    } else {
+      console.log('Deposit amount must be positive.');
+    }
+  }
+
+  withdraw(amount) {
+    if (amount > 0 && amount <= this.balance) {
+      this.balance -= amount;
+    } else {
+      console.log('Insufficient funds or invalid amount.');
+    }
+  }
+
+  getAccountInfo() {
+    return {
+      accountNumber: this.accountNumber,
+      balance: this.balance,
+      user: this.user.toJSON()
+    };
+  }
+}
+
 // Example usage:
 const user = new User(1, 'johndoe', 'john@example.com');
-console.log(user.toJSON());
+const user2 = new User(2, 'janedoe', 'jo@j.com');
+const account = new BankAccount('123456789', user);
+account.deposit(1000);
+account.withdraw(500);
+console.log(account.getAccountInfo());
