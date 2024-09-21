@@ -61,3 +61,6 @@ const account = new BankAccount('123456789', user);
 account.deposit(1000);
 account.withdraw(500);
 console.log(account.getAccountInfo());
+
+// Add this line at the end of index.js
+module.exports = { User, BankAccount };
